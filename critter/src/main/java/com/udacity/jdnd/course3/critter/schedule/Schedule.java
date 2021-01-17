@@ -16,10 +16,11 @@ public class Schedule {
     @GeneratedValue
     private Long id;
 
-    @ManyToMany(mappedBy = "schedules")
+    //one dir relation is enough - no need to show schedule at employee endpoint
+    @ManyToMany
     private List<Employee> employees;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "schedule")
+    //one dir relation is enough
+    @ManyToMany
     private List<Pet> pets;
 
     private LocalDate date;

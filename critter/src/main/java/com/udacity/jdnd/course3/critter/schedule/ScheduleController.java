@@ -46,8 +46,6 @@ public class ScheduleController {
         return dtos;
     }
 
-    // this show return pet with Schedule info. now it returns the pet dto with no schedule info
-    // http://localhost:8082/pet/8
     @GetMapping("/pet/{petId}")
     public List<ScheduleDTO> getScheduleForPet(@PathVariable long petId) {
         List<Schedule> schedules = scheduleService.getScheduleForPet(petId);
@@ -55,7 +53,7 @@ public class ScheduleController {
         schedules.forEach(schedule -> dtos.add(convertScheduleToScheduleDTO(schedule)));
         return dtos;
     }
-    //does not work
+
     @GetMapping("/employee/{employeeId}")
     public List<ScheduleDTO> getScheduleForEmployee(@PathVariable Long employeeId) {
         List<Schedule> schedules = scheduleService.getScheduleForEmployee(employeeId);
@@ -67,7 +65,6 @@ public class ScheduleController {
         }
         return dtos;
     }
-    //does not work
     @GetMapping("/customer/{customerId}")
     public List<ScheduleDTO> getScheduleForCustomer(@PathVariable Long customerId) {
         List<Schedule> schedules = scheduleService.getScheduleForCustomer(customerId);

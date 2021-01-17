@@ -113,13 +113,6 @@ public class UserController {
         customer.setNotes(customerDTO.getNotes());
         customer.setPhoneNumber(customerDTO.getPhoneNumber());
 
-        List<Long> petsIds =  customerDTO.getPetIds();
-        if (petsIds != null)
-        {
-            List<Pet> pets = petService.getAllPets();
-            customer.setPets(pets);
-        }
-
         return customerService.save(customer);
     }
 

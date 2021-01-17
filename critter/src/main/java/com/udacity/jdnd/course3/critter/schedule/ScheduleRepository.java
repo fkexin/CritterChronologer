@@ -10,9 +10,10 @@ import java.util.List;
 public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
 
     // find all schedules by petId
-    List<Schedule> findAllPetById(Long petId);
+    //use _ to access th value of a property that is inside another entity (Pets)
+    List<Schedule> findAllByPets_Id(Long petId);
 
     // find all schedules by employee id
-    List<Schedule> findAllEmployeesById(Long employeeId);
+    List<Schedule> findAllByEmployees_Id(Long employeeId);
 
 }

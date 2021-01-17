@@ -19,9 +19,6 @@ public class ScheduleService {
     ScheduleRepository scheduleRepository;
 
     @Autowired
-    PetService petService;
-
-    @Autowired
     CustomerRepository customerRepository;
 
     public Schedule save(Schedule schedule) {
@@ -34,12 +31,12 @@ public class ScheduleService {
 
     // find all schedules by petId
     public List<Schedule> getScheduleForPet(Long petId){
-        return scheduleRepository.findAllPetById(petId);
+        return scheduleRepository.findAllByPets_Id(petId);
     }
 
     // find all schedules by employee id
     public List<Schedule> getScheduleForEmployee(Long employeeId) {
-        return scheduleRepository.findAllEmployeesById(employeeId);
+        return scheduleRepository.findAllByEmployees_Id(employeeId);
     }
 
     // find all schedules by customer id
@@ -49,9 +46,8 @@ public class ScheduleService {
             Customer customer = customerOptional.get();
             List<Pet> pets = customer.getPets();
             List<Schedule> schedules = new ArrayList<>();
-            for (Pet pet : pets)
-            {
-                schedules.addAll(scheduleRepository.findAllPetById(pet.getId()));
+            for (Pet pet : pets) {
+                schedules.addAll(scheduleRepository.findAllByPets_Id(pet.getId()));
             }
             return schedules;
         } else {

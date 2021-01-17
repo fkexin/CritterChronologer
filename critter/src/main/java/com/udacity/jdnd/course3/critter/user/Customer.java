@@ -12,7 +12,7 @@ public class Customer extends User{
     private String notes;
 
     //"ownerId" is the property in Pet class that will be used to map the mappedBy variable
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "owner")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "owner")
     private List<Pet> pets = new ArrayList<>();
 
     public Customer() {

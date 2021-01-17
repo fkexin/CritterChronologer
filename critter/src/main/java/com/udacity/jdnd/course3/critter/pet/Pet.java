@@ -5,6 +5,7 @@ import com.udacity.jdnd.course3.critter.user.Customer;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Pet {
@@ -22,9 +23,8 @@ public class Pet {
     private LocalDate birthDate;
     private String notes;
 
-    @ManyToOne // many pets in one schedule
-    @JoinColumn(name = "schedule_id")
-    private Schedule schedule;
+    @ManyToMany
+    private List<Schedule> schedules;
 
     public Pet() {
     }
@@ -36,13 +36,14 @@ public class Pet {
         this.birthDate = birthDate;
     }
 
-    public Pet(PetType type, String name, Customer owner, LocalDate birthDate, String notes, Schedule schedule) {
+
+    public Pet(PetType type, String name, Customer owner, LocalDate birthDate, String notes, List<Schedule> schedules) {
         this.type = type;
         this.name = name;
         this.owner = owner;
         this.birthDate = birthDate;
         this.notes = notes;
-        this.schedule = schedule;
+        this.schedules = schedules;
     }
 
     public Long getId() {
@@ -93,12 +94,13 @@ public class Pet {
         this.notes = notes;
     }
 
-    public Schedule getSchedule() {
-        return schedule;
+
+    public List<Schedule> getSchedules() {
+        return schedules;
     }
 
-    public void setSchedule(Schedule schedule) {
-        this.schedule = schedule;
+    public void setSchedules(List<Schedule> schedules) {
+        this.schedules = schedules;
     }
 }
 

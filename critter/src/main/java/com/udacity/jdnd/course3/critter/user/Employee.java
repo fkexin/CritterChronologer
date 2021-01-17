@@ -9,10 +9,10 @@ import java.util.Set;
 
 @Entity
 public class Employee extends User{
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     public Set<EmployeeSkill> skills;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     public Set<DayOfWeek> daysAvailable;
 
     @ManyToMany(cascade = CascadeType.ALL)
